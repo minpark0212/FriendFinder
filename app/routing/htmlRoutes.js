@@ -1,20 +1,15 @@
 
-function expressify(app){
-	app.get("/api/route1", function(req, res){
-		res.end();
-	})
+var path = require("path");
 
-	app.get("/api/route2", function(req, res){
-		res.end();
-	})
+module.exports = function(app) {
 
-	app.get("/api/route3", function(req, res){
-		res.end();
-	})
+  app.get("/survey", function(req, res) {
+    res.sendFile(path.join(__dirname, "/../public/survey.html"));
+  });
 
-	app.get("/api/route4", function(req, res){
-		res.end();
-	})
-}
 
-module.exports = expressify;
+  app.use(function(req, res) {
+    res.sendFile(path.join(__dirname, "/../public/home.html"));
+  });
+  
+};
